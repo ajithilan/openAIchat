@@ -1,0 +1,77 @@
+@tailwind base
+@tailwind components
+@tailwind utilities
+
+.app
+    display: flex
+    flex-direction: column
+    width: 100dvw
+    height: 100dvh
+    background: rgba(19,19,19,1)
+    color: white
+
+.profile
+    height: calc(100% - 56px)
+
+.image-card
+    background: url("./assets/profile.webp")
+    background-size: cover
+    background-position: center
+    background-repeat: no-repeat
+    box-shadow: 0px -1px 0px rgba(0,0,0,1) inset, 0px 1px 0px rgba(0,0,0,1) inset
+
+.shadow-top
+    background: linear-gradient(to bottom, rgba(37, 37, 37, 1) 60%, transparent)
+
+.shadow-bottom
+    background: linear-gradient(to top, rgba(0,0,0,.8), transparent)
+
+.user-profile
+    background: linear-gradient(to bottom,#571126dc 40%, #be2654a4)
+
+.switch
+    position: relative
+    width: 34px
+    height: 16px
+    border-radius: 50px
+    background: #2c2c2c
+    cursor: pointer
+    transition: background .2s
+
+    &:hover
+        background: #353535
+
+    &::before
+        content: ''
+        position: absolute
+        top: 50%
+        left: 2px
+        transform: translateY(-50%)
+        width: 12px
+        height: 12px
+        background: rgba(214,42,94,1)
+        border-radius: 50px
+        transition: .2s
+
+    &.active 
+        &::before
+            left: 20px
+
+
+
+//scrollbar
+.user-profile
+    &::-webkit-scrollbar
+        width: 4px
+        background-color: transparent
+
+    &::-webkit-scrollbar-thumb
+        background-color: #b1244e
+        border-radius: 4px
+
+    &::-webkit-scrollbar-thumb:hover
+        background-color: #999
+
+.chat-display
+    &::-webkit-scrollbar
+        display: none
