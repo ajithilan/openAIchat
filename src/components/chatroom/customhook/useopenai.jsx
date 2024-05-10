@@ -2,7 +2,7 @@
 //Created a custom hook to fetch data from "gryphe" model
 //Gets called only when user inputs a message and submits
 export const useOpenAI = async (content) => {
-    const OPENROUTER_API_KEY = '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';
+    const OPENROUTER_API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
 
     try{
         const response =  await fetch("https://openrouter.ai/api/v1/chat/completions", {

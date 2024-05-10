@@ -1,6 +1,6 @@
 import { VolumeUp, ThumbUp, ThumbDown, Loop, 
     PlayCircle, BorderColor, ContentCopy } from "@mui/icons-material"
-import profile from "../../../assets/profile.webp"
+import profile from "../../../assets/profile.jpg"
 import { iconStyling } from "./chatdisplay"
 import { useContext } from "react"
 import { chatContext } from "../chatpanel"

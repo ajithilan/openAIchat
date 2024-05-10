@@ -1,5 +1,5 @@
 import { BorderColor, ContentCopy } from "@mui/icons-material"
-import profile from "../../../assets/profile.webp"
+import profile from "../../../assets/profile.jpg"
 import { iconStyling } from "./chatdisplay"
 
 //separate component with different layout and styling for user

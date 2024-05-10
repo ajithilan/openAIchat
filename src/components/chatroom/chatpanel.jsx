@@ -35,6 +35,7 @@ export const ChatPanel = () => {
                 dispatch(setMessage({ role: 'user', message: query, time: Date.now() }));
                 setTimeout(() => {
                     dispatch(setMessage({ role: 'assistant', message: '', time: Date.now() }));
+                    scrollToNewmessage();
                 }, 1000);
                 setLoading(true);
                 setContent(query);
