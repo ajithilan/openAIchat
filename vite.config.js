@@ -4,7 +4,7 @@ import postcssConfig from './postcss.config.cjs';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/secretdesires/chat',
+  base: '/openAIchat',
   plugins: [
     react(),
     postcssConfig.default
