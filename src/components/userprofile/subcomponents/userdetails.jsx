@@ -3,9 +3,9 @@ import { CameraAlt, MapsUgc, Lock, Share, BorderColorOutlined } from "@mui/icons
 //Displays all essential assistant details
 export const UserDetails = () => {
 
-    return <div className="userdetails px-7 py-3 flex-1 flex flex-col gap-2.5">
+    return <div className="userdetails flex-1 flex flex-col px-4 lg2:px-7 py-3 gap-2.5">
         <section
-        className="px-6 py-2.5 rounded-xl flex justify-between gap-2 bg-navgray"
+        className="px-6 py-2.5 rounded-xl flex justify-between gap-4 bg-navgray"
         >
             <span className="text-[14px] flex items-center gap-1.5">
                 <CameraAlt sx={{fontSize:14}}/>
@@ -14,14 +14,16 @@ export const UserDetails = () => {
                 <span>6</span>
             </span>
             <span className="text-[14px] flex items-center gap-1.5">
-                <Lock sx={{fontSize:14, opacity:.5}}/>
-                <span>Make Character Public</span>
+                <span className="hidden lg2:flex items-center gap-1.5">
+                    <Lock sx={{fontSize:14, opacity:.5}}/>
+                    <span>Make Character Public</span>
+                </span>
                 <Share sx={{fontSize:14}}/>
             </span>
         </section>
-        <section className="flex h-fit gap-2 bg-navgray rounded-xl p-4">
+        <section className="flex flex-col lg2:flex-row h-fit lg2:max-h-[690px] overflow-hidden gap-4 lg2:gap-2 bg-navgray rounded-xl p-4">
             <section
-            className="flex w-[45%] flex-col gap-3 [&>*]:flex [&>*]:flex-col
+            className="flex w-full lg2:w-[45%] flex-col gap-3 [&>*]:flex [&>*]:flex-col
             [&>span>span:nth-child(1)]:font-bold [&>span>span]:text-sm"
             >
                 <span className="font-bold">Who I Am</span>
@@ -42,7 +44,7 @@ export const UserDetails = () => {
                     <span>Friend</span>
                 </span>
             </section>
-            <section className="w-[55%] flex flex-col gap-3">
+            <section className="w-full lg2:w-[55%] flex flex-col gap-3 overflow-hidden">
                 <span className="flex justify-between items-center">
                     <span className="font-bold">About Me</span>
                     <BorderColorOutlined sx={{fontSize:18}}/>

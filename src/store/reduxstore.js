@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 
 //Redux store for storing chat history between user and assistant
-//Added the dialogue from design to message history for visual appeal
+//Added dialogues from design to message history for visual appeal
 const chatSlice = createSlice({
     name: 'chat',
     initialState: {
@@ -25,12 +25,19 @@ const chatSlice = createSlice({
     },
     reducers: {
         setMessage : ( state, action ) => {
-            const newMessage = [...state.messageHistory];
+            const newMessage = state.messageHistory;
             newMessage.push(action.payload);
             state.messageHistory = newMessage;
+        },
+        updateMessage: ( state, action ) => {
+            const updatedMessage = state.messageHistory;
+            const len = updatedMessage.length;
+            updatedMessage[len-1].message = action.payload.message;
+            updatedMessage[len-1].time = action.payload.time;
+            state.messageHistory = updatedMessage;
         }
     }
 });
 
-export const { setMessage } = chatSlice.actions
+export const { setMessage, updateMessage } = chatSlice.actions
 export default chatSlice.reducer

@@ -7,6 +7,10 @@ module.exports = {
         navgray: 'rgba(37, 37, 37, 1)',
         primepink: 'rgba(214,42,94,1)',
         detailgray: '#2b2929d3'
+      },
+      screens: {
+        'xs': { max: '360px' },
+        'lg2': '1145px'
       }
     },
   },

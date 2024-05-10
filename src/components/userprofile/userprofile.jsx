@@ -5,7 +5,7 @@ import { UserDetails } from "./subcomponents/userdetails"
 export const UserProfile = () => {
 
     return <div
-    className="user-profile w-[500px] flex flex-col overflow-y-scroll overflow-x-hidden"
+    className="user-profile hidden lg:flex  w-[500px] flex-col overflow-y-scroll overflow-x-hidden"
     >
         <ImageCard/>
         <UserDetails/>

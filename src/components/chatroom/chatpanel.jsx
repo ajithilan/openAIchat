@@ -3,7 +3,7 @@ import { useOpenAI } from "./customhook/useopenai";
 import { MessageInput } from "./subcomponents/messageinput";
 import { ChatDisplay } from "./subcomponents/chatdisplay";
 import { useDispatch } from "react-redux";
-import { setMessage } from "../../store/reduxstore";
+import { setMessage, updateMessage } from "../../store/reduxstore";
 
 //context API incase of future expansion
 export const chatContext = createContext(null);
@@ -11,7 +11,8 @@ export const chatContext = createContext(null);
 //This component displays the chat history along with textarea for getting input message
 export const ChatPanel = () => {
     const dispatch = useDispatch();
-    const [content, setContent] = useState('');
+    const [ content, setContent ] = useState('');
+    const [ loading, setLoading ]= useState(false);
     const textRef = useRef(null);
     const timeoutId = useRef(null);
 
@@ -31,7 +32,11 @@ export const ChatPanel = () => {
             const query = textRef.current.value.trim();
             //checks if query(entered message) is empty space
             if(query){
-                dispatch(setMessage({ role: 'user', message: query, time: Date.now() }))
+                dispatch(setMessage({ role: 'user', message: query, time: Date.now() }));
+                setTimeout(() => {
+                    dispatch(setMessage({ role: 'assistant', message: '', time: Date.now() }));
+                }, 1000);
+                setLoading(true);
                 setContent(query);
                 scrollToNewmessage();
             }
@@ -40,20 +45,22 @@ export const ChatPanel = () => {
     }
 
     useEffect(() => {
-        //fetches message from API if user sends a message(stored in content state)
+        //fetches message from API if user sends a message(stored in content)
         async function fetchMessage(){
             const receivedMessage = await useOpenAI(content);
-            dispatch(setMessage({ role: 'assistant', message: receivedMessage.content, time: Date.now() }));
+            setLoading(false);
+            dispatch(updateMessage({ message: receivedMessage.content, time: Date.now() }));
             scrollToNewmessage();
         }
         if(content) fetchMessage();
     },[content])
 
     const contextValues = {
-        textRef
+        textRef,
+        loading
     }
 
-    return <div className="chatpanel flex-1 flex flex-col justify-between p-4">
+    return <div className="chatpanel flex-1 flex flex-col justify-between p-4 pb-8">
         <chatContext.Provider value={ contextValues }>
             <ChatDisplay/>
             <MessageInput handleSubmit={ handleSubmit }/>
