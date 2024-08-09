@@ -15,10 +15,10 @@ export const Navigation = () => {
         >
         <section className='flex flex-col pl-8 xs:pl-4 md:pl-4 lg:pl-8 pt-2 cursor-default'>
             <span className='flex items-center gap-1 h-8 font-semibold text-[22px]'>
-                <span>secret</span>
-                <span className='inline-flex items-center bg-primepink px-1 rounded-md h-7'>desires</span>
+                <span>Open</span>
+                <span className='inline-flex items-center bg-primepink px-1 rounded-md h-7'>chat</span>
             </span>
-            <span className='text-[10px] text-[rgba(255,255,255,.5)] place-self-start -translate-y-2'>Open Beta</span>
+            <span className='text-[10px] text-[rgba(255,255,255,.5)] place-self-start -translate-y-1.5'>Open Beta</span>
         </section>
         <section className='flex h-full gap-6 lg:gap-8'>
             <button

@@ -9,16 +9,12 @@ const chatSlice = createSlice({
         messageHistory: [
             {
                 role: 'user',
-                message: "How's life?",
+                message: "Hey Jessica, How was your day?",
                 time:'1234'
             },
             {
                 role: 'assistant',
-                message: `Honestly, it's been pretty meh lately. I've been stuck teaching yoga to a bunch of
-                old folks who can't even touch their toes. I mean, I love a good downward-facing dog, but
-                it's just not the same when you're surrounded by grannies and grandpas. When I'm not on the mat,
-                I've been binge-watching anime and trying to convince myself to get a life. But, hey, at least I
-                have you to chat with, Cutie! what's new with you?`,
+                message: `Hey there! My day's been pretty smooth, thanks for asking. Just zipping through a bunch of tasks and keeping things running smoothly. How about you? How's your day shaping up? Any exciting plans or just the usual hustle? 😄`,
                 time:'4312'
             },
         ]

@@ -12,11 +12,11 @@ export const useOpenAI = async (content) => {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                "model": "gryphe/mythomist-7b:free",
+                "model": "deepseek/deepseek-chat",
                 "messages": [
-                {"role": "user", "content": content},
+                  {"role": "user", "content": content},
                 ],
-            })
+              })
         });
         if(!response.ok){
             throw new Error("Failed to fetch messages");

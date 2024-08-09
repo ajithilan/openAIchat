@@ -5,33 +5,36 @@ import { chatContext } from "../chatpanel";
 
 //This component holds the input for the user to enter a query
 export const MessageInput = ({ handleSubmit }) => {
-    const { textRef } = useContext(chatContext);
+    const { textRef, isInputDisabled } = useContext(chatContext);
 
-    return <section className="w-full flex justify-center items-center">
-        <div className="w-full lg:w-fit">
-            <section className="w-full flex justify-end items-center p-1 pr-[52px]">
-                <span className="pr-1.5 text-primepink">text</span>
-                <CustomSwitch/>
-            </section>
-            <form onSubmit={ handleSubmit }>
-                <section className="flex items-center gap-2">
-                    <textarea
-                    ref={ textRef }
-                    name="message-input"
-                    className="resize-none w-full lg:w-[720px] h-11 bg-transparent placeholder:text-[rgba(163,163,163,0.6)]
-                    p-2 overflow-hidden focus:outline-none border-2 border-red-600 rounded-md"
-                    placeholder="Type a message here..."
-                    onKeyDown={(e) => e.key === 'Enter' && handleSubmit(e) }
-                    >
-                    </textarea>
-                    <button
-                    type="submit"
-                    className="min-w-11 min-h-11 w-11 h-11 rounded-full transition-background ease-in-out duration-200  bg-[rgba(155,155,155,0.5)] hover:bg-[rgba(155,155,155,0.7)]"
-                    >
-                        <Telegram/>
-                    </button>
+    return (
+        <section className="w-full flex justify-center items-center">
+            <div className="w-full lg:w-fit">
+                <section className="w-full flex justify-end items-center p-1 pr-[52px]">
+                    <span className="pr-1.5 text-primepink">text</span>
+                    <CustomSwitch/>
                 </section>
-            </form>
-        </div>
-    </section>
+                <form onSubmit={ handleSubmit }>
+                    <section className="flex items-center gap-2">
+                        <textarea
+                        ref={ textRef }
+                        name="message-input"
+                        className={`${isInputDisabled ? 'border-gray-500' : 'border-red-600'} resize-none w-full lg:w-[720px] h-11 bg-transparent placeholder:text-[rgba(163,163,163,0.6)]
+                        p-2 overflow-hidden focus:outline-none border-2 rounded-md`}
+                        placeholder="Type a message here..."
+                        onKeyDown={(e) => e.key === 'Enter' && handleSubmit(e) }
+                        disabled={ isInputDisabled }
+                        >
+                        </textarea>
+                        <button
+                        type="submit"
+                        className="min-w-11 min-h-11 w-11 h-11 rounded-full transition-background ease-in-out duration-200  bg-[rgba(155,155,155,0.5)] hover:bg-[rgba(155,155,155,0.7)]"
+                        >
+                            <Telegram/>
+                        </button>
+                    </section>
+                </form>
+            </div>
+        </section>
+    )
 }

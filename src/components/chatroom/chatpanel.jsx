@@ -13,6 +13,7 @@ export const ChatPanel = () => {
     const dispatch = useDispatch();
     const [ content, setContent ] = useState('');
     const [ loading, setLoading ]= useState(false);
+    const [ isInputDisabled, setIsInputDisabled ] = useState(false);
     const textRef = useRef(null);
     const timeoutId = useRef(null);
 
@@ -30,6 +31,7 @@ export const ChatPanel = () => {
         //debouncing to stop multiple submits within a short span.
         timeoutId.current = setTimeout(() => {
             const query = textRef.current.value.trim();
+            const prompt = "You are a friendly person named Jessica. Respond to the user in a casual and engaging manner, using humor, empathy, and relevant details. Remember to reference previous messages in the conversation.";
             //checks if query(entered message) is empty space
             if(query){
                 dispatch(setMessage({ role: 'user', message: query, time: Date.now() }));
@@ -38,7 +40,8 @@ export const ChatPanel = () => {
                     scrollToNewmessage();
                 }, 1000);
                 setLoading(true);
-                setContent(query);
+                setIsInputDisabled(true);
+                setContent(query + prompt);
                 scrollToNewmessage();
             }
             textRef.current.value = '';
@@ -50,6 +53,7 @@ export const ChatPanel = () => {
         async function fetchMessage(){
             const receivedMessage = await useOpenAI(content);
             setLoading(false);
+            setIsInputDisabled(false);
             dispatch(updateMessage({ message: receivedMessage.content, time: Date.now() }));
             scrollToNewmessage();
         }
@@ -58,13 +62,16 @@ export const ChatPanel = () => {
 
     const contextValues = {
         textRef,
-        loading
+        loading,
+        isInputDisabled
     }
 
-    return <div className="chatpanel flex-1 flex flex-col justify-between p-4 pb-8">
-        <chatContext.Provider value={ contextValues }>
-            <ChatDisplay/>
-            <MessageInput handleSubmit={ handleSubmit }/>
-        </chatContext.Provider>
-    </div>
+    return (
+        <div className="chatpanel flex-1 flex flex-col justify-between p-4 pb-8">
+            <chatContext.Provider value={ contextValues }>
+                <ChatDisplay/>
+                <MessageInput handleSubmit={ handleSubmit }/>
+            </chatContext.Provider>
+        </div>
+    )
 }
